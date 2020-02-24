@@ -55,7 +55,6 @@ public class ModificationActivity extends AppCompatActivity implements OnPicDele
     private static final int REQUEST_GALLERY = 1000;
     private static final int REQUEST_CAMERA = 1001;
 
-//    private ImageView mMemoImageView;
     private EditText mTitleEditText;
     private EditText mDetailEditText;
     private ViewPager mViewPager;
@@ -213,14 +212,16 @@ public class ModificationActivity extends AppCompatActivity implements OnPicDele
     private String getPathFromURI(Uri uri){
         Cursor cursor = getContentResolver().query(uri, null, null, null, null );
         String path = null;
-        if(cursor != null) {
-            cursor.moveToNext();
-
-            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-            path = cursor.getString(idx);
+        if(cursor == null){
+            Log.e(TAG, "cursor in getPathFromURI is null");
+        }else if(cursor.getCount() < 1){
+            Log.w(TAG, "the search was unsuccessful");
             cursor.close();
         }else{
-            Log.e(TAG, "cursor in getPathFromURI is null");
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            path = cursor.getString(idx);
+            cursor.close();
         }
         return path;
     }
@@ -256,6 +257,7 @@ public class ModificationActivity extends AppCompatActivity implements OnPicDele
             mPictureList.add(new Picture(imgPath));
         if(mPictureList.size() >= 1) mViewPager.setVisibility(View.VISIBLE);
         pagerAdapter.notifyDataSetChanged();
+        mViewPager.setCurrentItem(mPictureList.size()-1);
     }
     private void setMemoFromUI(){
         mMemo.setTitle(mTitleEditText.getText().toString());
