@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">MemoApp</string>
+
+    <string name="memo">memo</string>
+    <string name="pictureList">picture_list</string>
+    <string name="position">position</string>
+
+
+
+    <!-- broadcast Action -->
+    <string name="actionAdd">add_memo</string>
+    <string name="actionDelete">delete_memo</string>
+
+    <string name="noTitle">(제목없음)</string>
+    <string name="noDetail">(내용없음)</string>
+
+    <!-- alert dialog for getting image    -->
+    <string name="pickFromGallery">갤러리에서 이미지 가져오기</string>
+    <string name="pickFromCamera">카메라 촬영하기</string>
+    <string name="pickFromUrl">Image Url로 가져오기</string>
+    <string name="dialogImageTitle">선택 목록 대화 상자</string>
+
+    <string name="buttonOk">확인</string>
+    <string name="buttonCancel">취소</string>
+
+
+
+
+</resources>
